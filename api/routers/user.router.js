@@ -14,9 +14,9 @@ const {
     authUser
 } = require ('../utils')
 
-router.get('/',getAllUsers)
-router.get('/:id',getUser)
-router.post('/',createUser)
-router.put('/:id',authUser,authAdmin,updateUser)
-router.delete('/:id',deleteUser)
+router.get('/',authUser,getAllUsers)
+router.get('/:id',authUser,getUser)
+router.post('/',authUser,createUser)
+router.put('/:id',authUser, authAdmin,updateUser)
+router.delete('/:id',authUser, authAdmin,deleteUser)
 module.exports = router

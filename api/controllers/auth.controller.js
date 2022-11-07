@@ -11,7 +11,7 @@ async function signup (req, res) {
 
     const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '1h' })
 
-    res.status(200).json({ email: user.email, token }) // token: token
+    res.status(200).json({ email: user.email, token })
   } catch (error) {
     res.status(500).send(`Error creating user: ${error}`)
     throw new Error(`Error creating user: ${error}`)

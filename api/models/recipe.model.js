@@ -13,7 +13,7 @@ const recipeSchema = new mongoose.Schema({
     dishtype: {
         type: String,
         required: true,
-        enum: ["primer plato", "segundo plato", "aperitivo", "postre", "salsa"]
+        enum: ['primer plato', 'segundo plato', 'aperitivo', 'postre', 'salsa']
     },
     ingredients: {
         type: [{quantity: String, name:String}],

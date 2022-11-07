@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ["usuario", "administrador"],
+        enum: ['usuario', 'administrador'],
         required: true
     },
     diet: {

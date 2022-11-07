@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken')
 const UserModel = require('../models/user.model') //comprobar la direccion
 
-// Authenticate Middleware
+// Authenticate Middleware User
 function authUser (req, res, next) {
   if (!req.headers.token) {
     res.status(403).json({ error: 'No Token found' })
@@ -18,6 +18,7 @@ function authUser (req, res, next) {
   }
 }
 
+// Authenticate Middleware Admin
 function authAdmin (req, res, next) {
     if (res.locals.user.role !== 'administrador') { 
       res.status(403).json({ error: 'User not authorized'}) 

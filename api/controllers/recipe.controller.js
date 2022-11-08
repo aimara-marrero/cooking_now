@@ -26,6 +26,11 @@ function getRecipeByDish(req, res) {
         .catch((err) => res.json(err));
 }
 
+function getRecipeByIngredients(req, res) {
+    Recipe.find(req.query) 
+         .then((result) => res.json(result))
+        .catch((err) => res.json(err))
+}
 function createRecipe(req, res) {
     Recipe.create(req.body)
         .then((recipe) => res.json(recipe))
@@ -42,12 +47,26 @@ function deleteRecipe(req, res) {
         .catch((err) => res.json(err))
 }
 
+function addComments(req, res){
+    Recipe.findById(req.params.id)
+    .then(recipe => {
+        if (!recipe.comments){recipe.comments =[]}
+        recipe.comments.push(req.body)
+        recipe.save()
+              .then(recipe => {
+                 res.json(recipe)
+              })
+    })
+    .catch((err)=> res.json(err))
+}
 module.exports = {
     getAllRecipes,
     getRecipe,
+    getRecipeByIngredients,
     getRecipeByDiet,
     getRecipeByDish,
     createRecipe,
+    addComments,
     updateRecipe,
     deleteRecipe
 }

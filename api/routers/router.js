@@ -8,9 +8,9 @@ const { authUser } = require('../utils')
 
 
 
-router.use('/user',userRouter)
-router.use('/recipe',recipeRouter)
-router.use('/ingredient', ingredientRouter)
+router.use('/users',userRouter)
+router.use('/recipes',recipeRouter)
+router.use('/ingredients', ingredientRouter)
 router.use('/auth', authRouter)/
 
 //Show the user profile through authUser

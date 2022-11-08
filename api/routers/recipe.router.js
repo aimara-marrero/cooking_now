@@ -4,6 +4,8 @@ const router = require('express').Router()
 const {
     getAllRecipes,
     getRecipe,
+    getRecipeByDiet,
+    getRecipeByDish,
     createRecipe,
     updateRecipe,
     deleteRecipe
@@ -15,6 +17,8 @@ const {
     authUser} = require ("../utils")*/
 
 router.get('/',getAllRecipes)
+router.get('/dish/:dish',getRecipeByDish)
+router.get('/diet/:diet',getRecipeByDiet)
 router.get('/:id',getRecipe)
 router.post('/',createRecipe)
 router.put('/:id',updateRecipe)

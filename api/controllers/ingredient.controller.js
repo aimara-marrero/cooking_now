@@ -11,7 +11,7 @@ function getIngredient(req, res) {
     Ingredient
         .findById(req.params.id)
         .then(response => res.json(response))
-        .catch(err => hadleError(err, res))
+        .catch((err) => res.json(err))
 }
 
 function createIngredient(req, res) {
@@ -26,7 +26,7 @@ function updateIngredient(req, res) {
         .catch((err) => res.json(err));
 }
 function deleteIngredient(req, res) {
-    Ingredient.findByIdAndDelete(req.arams.id)
+    Ingredient.findByIdAndDelete(req.params.id)
         .then((result) => res.json(result))
         .catch((err) => res.json(err))
 }

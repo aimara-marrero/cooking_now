@@ -11,7 +11,19 @@ function getRecipe(req, res) {
     Recipe
         .findById(req.params.id)
         .then(response => res.json(response))
-        .catch(err => hadleError(err, res))
+        .catch((err) => res.json(err))
+}
+function getRecipeByDiet(req, res) {
+    Recipe
+        .find({diet:req.params.diet})
+        .then((recipe) => res.json(recipe))
+        .catch((err) => res.json(err));
+}
+function getRecipeByDish(req, res) {
+    Recipe
+        .find({dishType:req.params.dish})
+        .then((recipe) => res.json(recipe))
+        .catch((err) => res.json(err));
 }
 
 function createRecipe(req, res) {
@@ -21,11 +33,11 @@ function createRecipe(req, res) {
 }
 function updateRecipe(req, res) {
     Recipe.findByIdAndUpdate(req.params.id, req.body)
-        .then((result) => res.json(result))
-        .catch((err) => res.json(err));
+       .then((result) => res.json(result))
+        .catch((err) => res.json(err)); 
 }
 function deleteRecipe(req, res) {
-    Recipe.findByIdAndDelete(req.arams.id)
+    Recipe.findByIdAndDelete(req.params.id)
         .then((result) => res.json(result))
         .catch((err) => res.json(err))
 }
@@ -33,6 +45,8 @@ function deleteRecipe(req, res) {
 module.exports = {
     getAllRecipes,
     getRecipe,
+    getRecipeByDiet,
+    getRecipeByDish,
     createRecipe,
     updateRecipe,
     deleteRecipe

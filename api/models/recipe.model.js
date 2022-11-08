@@ -10,15 +10,18 @@ const recipeSchema = new mongoose.Schema({
         enum: ['vegano', 'vegetariano', 'omnivoro'],
         required: true
     },
-    dishtype: {
+    dishType: {
         type: String,
+        enum: ['primer plato', 'segundo plato', 'aperitivo', 'postre', 'salsa'],
         required: true,
-        enum: ['primer plato', 'segundo plato', 'aperitivo', 'postre', 'salsa']
     },
-    ingredients: {
-        type: [{quantity: String, name:String}],
-        required: true
-    },
+    ingredients:[{
+        quantity : String,
+        ingredient : {
+         type : mongoose.Schema.Types.ObjectId,
+         ref:'ingredient'
+        }
+     }],
 
     time: {
         type: String,

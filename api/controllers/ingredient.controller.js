@@ -1,4 +1,4 @@
-const Ingredient = require('../models/Ingredient.model')
+const Ingredient = require('../models/ingredient.model')
 
 
 function getAllIngredients(req, res) {

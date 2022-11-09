@@ -20,7 +20,8 @@ const recipeSchema = new mongoose.Schema({
         quantity : String,
         ingredient : {
          type : mongoose.Schema.Types.ObjectId,
-         ref:'ingredient'
+         ref:'ingredient',
+         required: true
         }
      }],
 
@@ -31,7 +32,7 @@ const recipeSchema = new mongoose.Schema({
     difficulty: {
         type: String,
         required: true,
-        enum: ['fácil', 'medio', 'difícil']
+        enum: ['facil', 'medio', 'dificil']
     },
     preparation: {
         type: String,

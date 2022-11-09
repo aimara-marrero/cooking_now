@@ -20,7 +20,6 @@ function createIngredient(req, res) {
         .catch((err) => res.json(err))
 }
 function updateIngredient(req, res) {
-    req.body.password = bcrypt.hashSync(req.body.password, 10)
     Ingredient.findByIdAndUpdate(req.params.id, req.body)
         .then((result) => res.json(result))
         .catch((err) => res.json(err));

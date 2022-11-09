@@ -29,7 +29,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ['vegano', 'vegetariano', 'omnivoro'],
         default:'omnivoro'
-    }
+    },
+    favoriteRecipes: [{
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'recipe'
+       }]
 
 })
 

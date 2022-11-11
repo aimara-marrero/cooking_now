@@ -1,4 +1,5 @@
 const Users = require('../models/user.model')
+const Recipes = require('../models/recipe.model')
 const bcrypt = require('bcrypt')
 
 
@@ -27,16 +28,44 @@ function updateUser(req, res) {
         .then((result) => res.json(result))
         .catch((err) => res.json(err));
 }
+
 function deleteUser(req, res) {
     Users.findByIdAndDelete(req.params.id)
         .then((result) => res.json(result))
         .catch((err) => res.json(err))
 }
 
+function newFavRecipe(req,res){
+    Recipes.findById(req.params.id)
+    .then (recipe => {
+        Users.findById(res.locals.user.id)
+        .then(user => {
+            if(!user.favoriteRecipes){user.favoriteRecipes = []}
+            user.favoriteRecipes.push(recipe.id)
+            user.save()
+            .then(result => res.json(result))
+            .catch(err => res.json(err))
+        })
+        .catch(err => res.json(err))
+    })
+    .catch(err => res.json(err))
+}
+
+function getFavoriteRecipes(req,res){
+    Users.findById(res.locals.user.id)
+    .populate('favoriteRecipes')
+      .then((user) => {
+        const recipe = user.favoriteRecipes
+        res.json(recipe)})
+        .catch(err => res.json(err))
+  }
+
 module.exports = {
     getAllUsers,
     getUser,
+    getFavoriteRecipes,
     createUser,
+    newFavRecipe,
     updateUser,
     deleteUser
 }

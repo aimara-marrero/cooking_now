@@ -19,7 +19,6 @@ const {
 router.get('/',authUser,getAllUsers)
 router.get('/recipe', authUser,getFavoriteRecipes);
 router.get('/:id',authUser,getUser)
-
 router.post('/',authUser,createUser)
 router.put('/recipe/:id', authUser,newFavRecipe)
 router.put('/:id',authUser, authAdmin,updateUser)

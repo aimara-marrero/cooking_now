@@ -58,7 +58,7 @@ function getFavoriteRecipes(req,res){
         const recipe = user.favoriteRecipes
         res.json(recipe)})
         .catch(err => res.json(err))
-  }
+}
 
 module.exports = {
     getAllUsers,

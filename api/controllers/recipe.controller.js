@@ -4,21 +4,25 @@ const Ingredient = require("../models/ingredient.model.js");
 
 function getAllRecipes(req, res) {
   Recipe.find(req.query)
+    .populate('ingredients.ingredient')
     .then((recipes) => res.json(recipes))
     .catch((err) => res.json(err));
 }
 function getRecipe(req, res) {
   Recipe.findById(req.params.id)
+    .populate('ingredients.ingredient')
     .then((response) => res.json(response))
     .catch((err) => res.json(err));
 }
 function getRecipeByDiet(req, res) {
   Recipe.find({ diet: req.params.diet })
+    .populate('ingredients.ingredient')
     .then((recipe) => res.json(recipe))
     .catch((err) => res.json(err));
 }
 function getRecipeByDish(req, res) {
   Recipe.find({ dishType: req.params.dish })
+    .populate('ingredients.ingredient')
     .then((recipe) => res.json(recipe))
     .catch((err) => res.json(err));
 }
@@ -37,7 +41,6 @@ async function getRecipeByIngredients(req, res) {
         ingredientsIds.push(mongoose.Types.ObjectId(ing.id));
       }
     }
-
     // Buscamos las recetas que tengan algun ingredientId dentro de su array de ingredients
     let recipes = await Recipe.find().elemMatch("ingredients", {
       ingredient: { $in: ingredientsIds },
